@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StrideStyle | Alas Kaki & Kaus Kaki Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ef4444;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .sale-banner {
+            background: linear-gradient(to right, #4f46e5, #7c3aed);
+        }
+        
+        .product-image {
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .filter-option:hover {
+            color: #4f46e5;
+        }
+        
+        .cart-item-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #4f46e5;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c64a8848-9f6e-4449-a384-38ee2c2d5e94.png" alt="StrideStyle logo - abstract shoe silhouette with modern typography" class="h-10">
+                <span class="text-xl font-bold text-gray-800">Maylafashion</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+                <a href="#shop" class="text-gray-700 hover:text-indigo-600 font-medium">Shop</a>
+                <a href="#categories" class="text-gray-700 hover:text-indigo-600 font-medium">Categories</a>
+                <a href="#about" class="text-gray-700 hover:text-indigo-600 font-medium">About</a>
+                <a href="#contact" class="text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <button id="cart-button" class="text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cart-count" class="cart-item-count hidden">0</span>
+                    </button>
+                    <div id="cart-dropdown" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-md shadow-lg p-4 z-50">
+                        <div id="cart-items" class="max-h-60 overflow-y-auto"></div>
+                        <div id="cart-total" class="mt-2 pt-2 border-t text-right font-bold"></div>
+                        <button id="checkout-btn" class="mt-3 w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Checkout</button>
+                    </div>
+                </div>
+                
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gray-900 text-white">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/94c23a49-5e16-4c2a-a16e-771880a56089.png" alt="Modern footwear display with artistic lighting in a high-end shoe store" class="w-full h-96 md:h-[500px] object-cover opacity-70">
+        
+        <div class="absolute inset-0 flex items-center">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Step Up Your Style</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-2xl">Alas kaki premium yang dirancang untuk kenyamanan dan performa</p>
+                <a href="#shop" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-md font-medium">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Belanja Berdasarkan Kategori</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="category-card relative overflow-hidden rounded-lg hover:shadow-lg transition-all duration-300">
+                    <img src="14.jpg" alt="Collection of running shoes with different colors and styles" class="w-full h-40 md:h-60 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h3 class="text-white text-xl font-bold">Sepatu Lari</h3>
+                    </div>
+                </div>
+                
+                <div class="category-card relative overflow-hidden rounded-lg hover:shadow-lg transition-all duration-300">
+                    <img src="13.jpg" alt="Casual sneakers arranged in a stylish composition" class="w-full h-40 md:h-60 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h3 class="text-white text-xl font-bold">Sepatu Kasual</h3>
+                    </div>
+                </div>
+                
+                <div class="category-card relative overflow-hidden rounded-lg hover:shadow-lg transition-all duration-300">
+                    <img src="12.jpg" alt="Assortment of formal dress shoes in black and brown leather" class="w-full h-40 md:h-60 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h3 class="text-white text-xl font-bold">Sepatu Resmi</h3>
+                    </div>
+                </div>
+                
+                <div class="category-card relative overflow-hidden rounded-lg hover:shadow-lg transition-all duration-300">
+                    <img src="11.jpg" alt="Variety of colorful socks displayed in a row" class="w-full h-40 md:h-60 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h3 class="text-white text-xl font-bold">Kaus Kaki</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="shop" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Produk Unggulan</h2>
+                <div class="flex space-x-2">
+                    <button class="filter-option px-4 py-2 rounded-md font-medium" data-filter="all">All</button>
+                    <button class="filter-option px-4 py-2 rounded-md font-medium" data-filter="shoes">Shoes</button>
+                    <button class="filter-option px-4 py-2 rounded-md font-medium" data-filter="socks">Socks</button>
+                </div>
+            </div>
+            
+            <div class="sale-banner p-4 rounded-lg mb-8 flex justify-between items-center">
+                <div class="text-white">
+                    <h3 class="text-xl font-bold">Summer Sale</h3>
+                    <p>Diskon hingga 30% untuk semua koleksi musim panas</p>
+                </div>
+                <button class="bg-white text-indigo-600 px-4 py-2 rounded-md font-medium">Shop Now</button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-container">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="ria.JPG" alt="Portrait of a smiling young woman with brown hair" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Ria jakarta</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Sepatu lari ini sangat nyaman dan telah meningkatkan waktu tempuh maraton saya. Bernilai setiap sen!"</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="lala.jpg" alt="Portrait of a middle-aged man with glasses and gray hair" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Lala Semarang</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Banyak pilihan sepatu sport. Menemukan sepasang sepatu yang sempurna untuk kegiatan traveling saya."</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="fira.jpg" alt="Portrait of a young man with curly hair smiling" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Fira Manado</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Kaus kaki ini adalah favorit baru saya. Sangat nyaman dan tahan seharian di tempat traveling."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">StrideStyle</h3>
+                    <p>Alas kaki premium untuk setiap langkah perjalanan Anda.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-indigo-400">Home</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">Shop</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">Sale</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-indigo-400">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">FAQs</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">Returns & Exchanges</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">Shipping Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <p>Subscribe for updates and exclusive offers</p>
+                    <div class="mt-4 flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md text-gray-900 w-full">
+                        <button class="bg-indigo-600 px-4 py-2 rounded-r-md hover:bg-indigo-700">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>© 2025 StrideStyle. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product Data
+        const products = [
+            {
+                id: 1,
+                name: "Converse",
+                price: 850000,
+                originalPrice: 1400000,
+                category: "shoes",
+                description: "Converse Run Star Motion High Top",
+                image: "1.jpg",
+                alt: "White and blue running shoes with mesh fabric and rubber soles placed on a gym floor"
+            },
+            {
+                id: 2,
+                name: "SPORTS SEACATC",
+                price: 890999,
+                originalPrice: 1300999,
+                category: "shoes",
+                description: "sepatu fashion lokal/Tiongkok",
+                image: "2.jpg",
+                alt: "Beige canvas sneakers with white rubber soles displayed on a wooden bench"
+            },
+            {
+                id: 3,
+                name: "ru lifne nihevia",
+                price: 1590999,
+                category: "shoes",
+                description: "fashion Tiongkok atau lokal",
+                image: "6.jpg",
+                alt: "Black leather oxford shoes with polished shine on a marble surface"
+            },
+            {
+                id: 4,
+                name: "Maison Margiela Replica Sneaker",
+                price: 1790999,
+                category: "shoes",
+                description: "high fashion",
+                image: "7.jpg",
+                alt: "Brown leather hiking boots with rugged soles in a mountainous landscape"
+            },
+            {
+                id: 5,
+                name: "kaos kaki sport fashion",
+                price: 240999,
+                originalPrice: 280999,
+                category: "socks",
+                description: "gaya retro-sport",
+                image: "8.jpg",
+                alt: "Set of three folded socks in gray, navy and white colors arranged neatly"
+            },
+            {
+                id: 6,
+                name: "kaos kaki retro pria wanita",
+                price: 190999,
+                category: "socks",
+                description: "Streetwear vintage ala Amerika",
+                image: "9.jpg",
+                alt: "Technical running socks with ventilation zones on a synthetic track"
+            },
+            {
+                id: 7,
+                name: "Aesthetic Socks",
+                price: 340999,
+                category: "socks",
+                description: "Kartun/edgy doodle",
+                image: "10.jpg",
+                alt: "Assortment of colorful socks with geometric patterns laid out flat"
+            },
+            {
+                id: 8,
+                name: "OEM",
+                price: 290999,
+                originalPrice: 350999,
+                category: "socks",
+                description: "gaya Amerika dan Jepang",
+                image: "11.jpg",
+                alt: "Pair of dark blue cashmere socks folded elegantly on a dresser"
+            }
+        ];
+
+        // Cart functionality
+        let cart = [];
+        const cartButton = document.getElementById('cart-button');
+        const cartDropdown = document.getElementById('cart-dropdown');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCount = document.getElementById('cart-count');
+
+        // Toggle cart dropdown
+        cartButton.addEventListener('click', () => {
+            cartDropdown.classList.toggle('hidden');
+            if (!cartDropdown.classList.contains('hidden')) {
+                renderCart();
+            }
+        });
+
+        // Close cart when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!cartButton.contains(e.target) && !cartDropdown.contains(e.target)) {
+                cartDropdown.classList.add('hidden');
+            }
+        });
+
+        // Add product to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartCount();
+            showAddedToCartMessage(product.name);
+        }
+
+        // Update cart count display
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+            if (count > 0) {
+                cartCount.classList.remove('hidden');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+        }
+
+        // Render cart contents
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-center text-gray-500">Your cart is empty</p>';
+                cartTotal.textContent = '';
+                return;
+            }
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex items-center mb-4 pb-4 border-b';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded mr-4">
+                    <div class="flex-1">
+                        <h4 class="font-medium">${item.name}</h4>
+                        <p class="text-sm text-gray-500">Rp${item.price.toLocaleString('id-ID')} × ${item.quantity}</p>
+                    </div>
+                    <div>
+                        <p class="font-medium">Rp${itemTotal.toLocaleString('id-ID')}</p>
+                        <button class="remove-item text-xs text-red-500 hover:text-red-700" data-id="${item.id}">Remove</button>
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(itemElement);
+            });
+            
+            cartTotal.textContent = `Total: Rp${total.toLocaleString('id-ID')}`;
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = parseInt(e.target.getAttribute('data-id'));
+                    removeFromCart(id);
+                });
+            });
+        }
+
+        // Remove item from cart
+        function removeFromCart(productId) {
+            const itemIndex = cart.findIndex(item => item.id === productId);
+            if (itemIndex !== -1) {
+                cart.splice(itemIndex, 1);
+                updateCartCount();
+                renderCart();
+            }
+        }
+
+        // Show "added to cart" message
+        function showAddedToCartMessage(productName) {
+            const message = document.createElement('div');
+            message.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg';
+            message.innerHTML = `
+                <span>Added ${productName} to cart</span>
+            `;
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.style.opacity = '0';
+                setTimeout(() => message.remove(), 300);
+            }, 2000);
+        }
+
+        // Render products
+        function renderProducts(filter = 'all') {
+            const productsContainer = document.getElementById('products-container');
+            productsContainer.innerHTML = '';
+            
+            const filteredProducts = filter === 'all' 
+                ? products 
+                : products.filter(product => product.category === filter);
+            
+            filteredProducts.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300';
+                productElement.innerHTML = `
+                    <div class="relative overflow-hidden group">
+                        <img src="${product.image}" alt="${product.alt}" class="product-image w-full h-48 object-cover">
+                        ${product.originalPrice ? `<span class="discount-badge">SALE</span>` : ''}
+                        <button class="absolute bottom-0 left-0 right-0 bg-indigo-600 text-white py-2 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            onclick="addToCart(${product.id})">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">${product.name}</h3>
+                        <p class="text-sm text-gray-500 mb-2">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-lg">Rp${product.price.toLocaleString('id-ID')}</span>
+                            ${product.originalPrice ? `<span class="text-sm text-gray-400 line-through">Rp${product.originalPrice.toLocaleString('id-ID')}</span>` : ''}
+                        </div>
+                        <button class="w-full mt-3 bg-gray-200 text-gray-800 py-1 rounded hover:bg-gray-300 transition-colors"
+                            onclick="addToCart(${product.id})">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                productsContainer.appendChild(productElement);
+            });
+        }
+
+        // Initialize filter buttons
+        document.querySelectorAll('.filter-option').forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                document.querySelectorAll('.filter-option').forEach(btn => {
+                    if (btn === button) {
+                        btn.classList.add('bg-indigo-600', 'text-white');
+                        btn.classList.remove('text-gray-700');
+                    } else {
+                        btn.classList.remove('bg-indigo-600', 'text-white');
+                        btn.classList.add('text-gray-700');
+                    }
+                });
+                renderProducts(filter);
+            });
+        });
+
+        // Initialize checkout button
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            alert('Checkout functionality would be implemented here. In a real application, this would redirect to a payment page.');
+            cart = [];
+            updateCartCount();
+            renderCart();
+        });
+
+        // Initial render
+        renderProducts();
+        document.querySelector('.filter-option').click(); // Activate "All" filter by default
+    </script>
+</body>
+</html>
+
